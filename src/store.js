@@ -3,7 +3,7 @@ export const nodes = writable([]);
 export const shards = new Map();
 export const selectedShard = writable(null);
 
-fetch('http://localhost:6969/shards')
+fetch('/shards')
     .then(r => r.json())
     .then(res => {
         nodes.set(res);
@@ -16,7 +16,7 @@ fetch('http://localhost:6969/shards')
         }
     });
 
-const socket = new WebSocket('ws://localhost:6969/socket');
+const socket = new WebSocket('/socket');
 socket.onmessage = (event) => {
     const [ shardID, status ] = event.data.split(':');
     shards.get(Number(shardID)).status = status;
