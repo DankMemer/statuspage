@@ -5,7 +5,7 @@ on:
     paths-ignore:
       - 'public/build/**'
     branches:
-      - autobuild-test
+      - master
 
 jobs:
   build:
@@ -24,4 +24,4 @@ jobs:
           git config --global user.name "Statuspage Autobuild"
           git add -f public/build/*
           git commit -m "[build] $(git rev-parse --short HEAD)" || exit 0
-          git push origin autobuild-test
+          git push origin master
