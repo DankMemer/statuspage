@@ -17,11 +17,26 @@ jobs:
           node-version: '14'
 
       - run: npm install
-      
+      - run: npm run build
+
       - run: |
-          npm run build
           git config --global user.email "statuspage-autobuild@dankmemer.gg"
           git config --global user.name "Statuspage Autobuild"
+      
+      - run: |
           git add -f public/build/*
           git commit -m "[build] $(git rev-parse --short HEAD)" || exit 0
           git push origin master
+
+      - shell: bash
+        env:
+          GH_USERNAME: ${{ secrets.GH_USERNAME }}
+          GH_PAT: ${{ secrets.GH_PAT }}
+
+        run: |
+          git clone "https://$GH_USERNAME:$GH_PAT@github.com/dankmemer/dm-rewrite" /home/runner/dm-rewrite
+          cp -r public/* /home/runner/dm-rewrite/src/api/routes/frontend/public/
+          cd /home/runner/dm-rewrite
+          git add src/api/routes/frontend/public/*
+          git commit -m "[build] $(git rev-parse --short HEAD)" || exit 0
+          git push origin dev
