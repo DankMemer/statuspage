@@ -24,4 +24,4 @@ jobs:
           git config --global user.name "Statuspage Autobuild"
           git add -f public/build/*
           git commit -m "Autobuild $(git rev-parse --short HEAD)" || exit 0
-          git push
+          git push origin autobuild-test
