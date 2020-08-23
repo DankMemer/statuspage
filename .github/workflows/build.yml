@@ -1,0 +1,27 @@
+name: build
+
+on:
+  push:
+    paths-ignore:
+      - 'public/build/**'
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2-beta
+        with:
+          node-version: '14'
+
+      - run: npm install
+      
+      - run: |
+        npm run build
+        git config --global user.email "statuspage-autobuild@dankmemer.gg"
+        git config --global user.name "Statuspage Autobuild"
+        git add -f public/build/*
+        git commit -m "Autobuild $(git rev-parse --short HEAD)" || exit 0
+        git push master
