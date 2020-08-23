@@ -21,7 +21,7 @@ jobs:
       - run: |
           npm run build
           git config --global user.email "statuspage-autobuild@dankmemer.gg"
-          git config --global user.name "DankMemer"
+          git config --global user.name "Statuspage Autobuild"
           git add -f public/build/*
-          git commit -m "Build $(git rev-parse --short HEAD)" || exit 0
+          git commit -m "[build] $(git rev-parse --short HEAD)" || exit 0
           git push origin autobuild-test
