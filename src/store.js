@@ -1,10 +1,9 @@
 import { writable } from 'svelte/store';
-import { urlencoded } from 'body-parser';
 export const nodes = writable([]);
 export const shards = new Map();
 export const selectedShard = writable(null);
 
-fetch('/shards')
+fetch(`${env.APP_API_URL}/shards`)
     .then(r => r.json())
     .then(res => {
         nodes.set(res);
@@ -17,12 +16,7 @@ fetch('/shards')
         }
     });
 
-const socketURL = new URL('/socket', location.href);
-socketURL.protocol = socketURL.protocol
-    .replace('http', 'ws')
-    .replace('https', 'wss');
-
-const socket = new WebSocket(socketURL.href);
+const socket = new WebSocket(`${env.APP_WS_URL}/socket`);
 socket.onmessage = (event) => {
     const [ shardID, status ] = event.data.split(':');
     shards.get(Number(shardID)).status = status;

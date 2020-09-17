@@ -16,6 +16,7 @@
     "svelte": "^3.0.0"
   },
   "dependencies": {
+    "@rollup/plugin-replace": "^2.3.3",
     "node-sass": "^4.14.1",
     "sass": "^1.26.10",
     "sirv-cli": "^1.0.0",
