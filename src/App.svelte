@@ -1,7 +1,9 @@
 <script>
+	import ModalLayer from './ModalLayer.svelte';
 	import Node from './Node.svelte';
 	import Legend from './Legend.svelte';
 	import Logs from './Logs.svelte';
+
 	import { nodes } from './store.js';
 </script>
 
@@ -17,6 +19,7 @@
 	<div class="legend child">
 		<Legend />
 	</div>
+	<ModalLayer />
 </main>
 
 <style type="text/scss">
