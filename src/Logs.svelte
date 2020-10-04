@@ -10,7 +10,7 @@
     {#if typeof $selectedShard === 'number'}
         {#each shards.get($selectedShard).logs as log}
             <div class="log">
-                {log.time}: <span class="status-name" data-status={log.status}>{log.status}</span>
+                <span class="time">{log.time}</span>: <span class="status-name" data-status={log.status}>{log.status}</span>
             </div>
         {/each}
     {:else}
@@ -64,6 +64,10 @@
         .log {
             color: white;
             font-size: 0.8vw;
+        }
+
+        .time {
+            font-family: monospace;
         }
 
         .status-name {
