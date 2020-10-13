@@ -58,7 +58,7 @@
                     </div>
                 </div>
                 <div class="shard">
-                    <Shard id="69" status={shardStatus} margin={false} />
+                    <Shard id="" status={shardStatus} margin={false} />
                 </div>
             </div>
         {/each}
