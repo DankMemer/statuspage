@@ -8,7 +8,7 @@
         CONNECTED: 'This shard is connected to the gateway, but it hasn\'t identified nor resumed yet.',
         RESUMING: 'This shard is resuming a previous session.',
         GUILD_CREATE: 'This shard has successfully identified and has now started receiving guilds.',
-        DISCONNECTED: 'This shard was previously disconnected, but it\'s now disconnected (invalid session, missing heartbeat) ',
+        DISCONNECTED: 'This shard was previously connected, but it\'s now disconnected (invalid session, missing heartbeat) ',
     };
 
     let currentTitle = 'Legend';
