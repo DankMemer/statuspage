@@ -61,9 +61,8 @@ export default {
 		production && terser(),
 
 		replace({
-			env: JSON.stringify({
-				APP_API_URL: process.env.APP_API_URL || 'https://dankmemer.gg',
-				APP_WS_URL: process.env.APP_WS_URL || 'wss://dankmemer.gg',
+			'process.env': JSON.stringify({
+				APP_API_URL: process.env.APP_API_URL,
 			}),
 		}),
 	],

@@ -1,22 +1,11 @@
 <script>
-    import { selectedShard } from './store.js';
-
     export let id;
     export let status;
-    export let margin;
-
-    function setSelectedShard(id) {
-        if (typeof id === 'number') {
-            selectedShard.set(id);
-        }
-    }
 </script>
 
 <div
     class="shard"
-    data-margin={margin}
     data-status={status}
-    on:click={() => setSelectedShard(id)}
 >
     <div>{id}</div>
 </div>
@@ -43,11 +32,11 @@
     }
 
     .shard {
-        flex: 0 0 calc((100%/16) - 10px);
-        display: flex;
+        height: 75px;
+        width: 75px;
+        display: inline-flex;
         justify-content: center;
         align-items: center;
-        width: 100%;
         font-size: 1.5rem;
         cursor: pointer;
 
@@ -59,11 +48,11 @@
             background: #00cc99;
         }
 
-        &[data-status="UNINITIALIZED"] {
+        &[data-status="COLD"] {
             background: #8f8f8f;
         }
 
-        &[data-status="GUILD_CREATE"] {
+        &[data-status="INITIALISING"] {
             animation: receivingGuilds $timing;
         }
 
@@ -79,8 +68,8 @@
             background: #C80032;
         }
 
-        &[data-status="CONNECTED"] {
-            background: #0080FF;
+        &[data-status="INVALID_SESSION"] {
+            background: #C80032;
         }
 
         &[data-status="CONNECTING"] {
